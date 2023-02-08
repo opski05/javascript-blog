@@ -46,10 +46,7 @@ const optArticleSelector = '.post',
   function generateTitleLinks(customSelector = ''){
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
-  function clearTitleLinks() {
-    titleList.innerHTML = '';
-  }
-  clearTitleLinks();
+  titleList.innerHTML = ''; 
 
   /* find all the articles and save them to variable: articles */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
@@ -75,7 +72,7 @@ const optArticleSelector = '.post',
   titleList.innerHTML = html;
   
   const links = document.querySelectorAll('.titles a');
-  
+
   for (let link of links) {
     link.addEventListener('click', titleClickHandler);
   }
