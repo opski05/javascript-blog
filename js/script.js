@@ -209,6 +209,7 @@ function generateAuthors(){
     /* END LOOP: for each tag */
   }
 }
+generateAuthors();
 
 
 function authorClickHandler(event){
