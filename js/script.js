@@ -180,7 +180,7 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 
-function generateAuthors(){
+function generateAuthor(){
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -209,7 +209,7 @@ function generateAuthors(){
     /* END LOOP: for each tag */
   }
 }
-generateAuthors();
+generateAuthor();
 
 
 function authorClickHandler(event){

@@ -36,7 +36,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
-  span {
+  span{
     text-transform: none;
     font-weight: 400;
     color: lighten($color-dark, 20%);
@@ -83,7 +83,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  .active {
+  .active{
     font-weight: bold;
   }
 }
@@ -106,7 +106,7 @@ body {
 
 .post {
   display: none;
-  &.active {
+  &.active{
     display: block;
   }
 }
@@ -117,7 +117,7 @@ body {
 
 .post-tags {
   display: flex;
-  p {
+  p{
     margin: 0 10px 0 0;
   }
 }
