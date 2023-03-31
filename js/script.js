@@ -242,30 +242,6 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 
-function calculateAuthorsParams(authors){
-  const params = {max: 0, min: 999999};
-  for(let tag in tags){
-    if(tags[tag] > params.max){
-      params.max = tags[tag];
-    }
-    if(tags[tag] < params.min){
-      params.min = tags[tag];
-    }
-  }
-  return params;
-}
-
-function calculateAuthorsClass(count, params){
-  const normalizedCount = count - params.min;
-  const normalizedMax = params.max - params.min;
-  const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-
-  return optCloudClassPrefix + classNumber;
-}
-
-
-
 function generateAuthor(){
 
   /* [NEW] create a new variable allAuthors with an empty object */
@@ -309,8 +285,6 @@ function generateAuthor(){
   const authorList = document.querySelector(optAuthorsListSelector);
 
   /* [NEW] create variable for all links HTML code */
-  const authorsParams = calculateAuthorsParams(allAuthors);
-
   let allAuthorsHTML = '';
 
   /* [NEW] START LOOP: for each author in allAuthors: */
