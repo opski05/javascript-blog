@@ -242,6 +242,28 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 
+function calculateAuthorsParams(authors){
+  const params = {max: 0, min: 999999};
+  for(let author in authors){
+    if(authors[author] > params.max){
+      params.max = authors[author];
+    }
+    if(authors[author] < params.min){
+      params.min = authors[author];
+    }
+  }
+  return params;
+}
+
+function calculateAuthorClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+  return optCloudClassPrefix + classNumber;
+}
+
 function generateAuthor(){
 
   /* [NEW] create a new variable allAuthors with an empty object */
@@ -285,15 +307,18 @@ function generateAuthor(){
   const authorList = document.querySelector(optAuthorsListSelector);
 
   /* [NEW] create variable for all links HTML code */
+  const authorsParams = calculateAuthorsParams(allAuthors);
+  console.log('authorsParams:', authorsParams);
+
   let allAuthorsHTML = '';
 
   /* [NEW] START LOOP: for each author in allAuthors: */
   for(let articleAuthor in allAuthors){
 
     /* [NEW] generate code of a link and add it to allAuthorsHTML */
-    const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + ' (' + allAuthors[articleAuthor] + ')</a></li>';
+    const authorLinkHTML = '<li><a class="' + calculateAuthorClass(allAuthors[articleAuthor], authorsParams) + '" href="#author-' + articleAuthor + '">' + articleAuthor + '</a> </li>';
     allAuthorsHTML += authorLinkHTML;
-    //allAuthorsHTML += '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>' + ' (' + allAuthors[articleAuthor] + ') ';
+    // to działa -> const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + ' (' + allAuthors[articleAuthor] + ')</a></li>';
 
     /* [NEW] END LOOP: for each tag in allAuthors */
   }
