@@ -3,7 +3,11 @@
     const links = document.querySelectorAll('.titles a');
     console.log('links:', links);
   });*/
-
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+};
 
 const titleClickHandler = function (event) {
   event.preventDefault();
@@ -71,7 +75,9 @@ function generateTitleLinks(customSelector = ''){
     /* ... */
 
     /* create HTML of the link */
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
 
     /* insert link into html variable */
     html = html + linkHTML;
@@ -136,7 +142,9 @@ function generateTags(){
     for(let tag of articleTagsArray){
 
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
+      //const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
+      const linkHTMLData = {id: tag, title: tag};
+      const linkHTML = templates.tagLink(linkHTMLData);
 
       //<li><a href="#tag-design"><span>design</span></a> </li>
 
@@ -175,6 +183,7 @@ function generateTags(){
 
     const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '</a> </li>';
     console.log('tagLinkHTML:', tagLinkHTML);
+
     allTagsHTML += tagLinkHTML;
     /* [NEW] END LOOP: for each tag in allTags: */
   }
@@ -292,7 +301,9 @@ function generateAuthor(){
     let html = '';
 
     /* generate HTML of the link */
-    const linkHTML = '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li> ';
+    //const linkHTML = '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li> ';
+    const linkHTMLData = {id: articleAuthor, title: articleAuthor};
+    const linkHTML = templates.authorLink(linkHTMLData);
 
     /* add generated code to html variable */
     html = html + linkHTML;
